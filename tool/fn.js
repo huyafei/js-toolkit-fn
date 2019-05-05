@@ -1,11 +1,17 @@
 //时间戳转年、月、日、时、分、秒
+/**
+ * @desc
+ *
+ *
+ * */
+
 /*
  * 参数1-date：为13位时间戳 number
  * 参数2-t： 返回值类型：
   *   dateTime日期时间类型
   *   date日期类型
  * */
-export function timestampTime(date, t) {
+let timestampTime = function (date, t) {
 //      var date = new Date(date*1000);//如果date为13位不需要乘1000
   var date = new Date(date);
   if (t === "dateTime") {
@@ -23,7 +29,7 @@ export function timestampTime(date, t) {
     var D = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate());
 
     return Y + M + D;
-  }else if (t === "time") {
+  } else if (t === "time") {
     var h = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':';
     var m = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) + ':';
     var s = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
@@ -37,7 +43,7 @@ export function timestampTime(date, t) {
  *参数1-type：'mothFirst'或'mothLast' str
  *
  */
-export function getCurrentMonth(type) {
+let getCurrentMonth = function (type) {
   var date = new Date();
   var year = date.getFullYear() + "";
   var month = (date.getMonth() + 1) + "";
@@ -52,11 +58,12 @@ export function getCurrentMonth(type) {
   }
 
 }
+
 /*
  *【日期】获取上个月第一天或最后一天
  *  参数1-t：值为	firstDay/lastDay   str
  */
-export function getLastMonth(t) {
+let getLastMonth = function (t) {
   var nowdays = new Date();
   var year = nowdays.getFullYear();
   var month = nowdays.getMonth();
@@ -81,7 +88,7 @@ export function getLastMonth(t) {
 }
 
 //获取下个月某一天
-export function getNextMonth(date) {
+let getNextMonth = function (date) {
   var arr = date.split('-');
   var year = arr[0]; //获取当前日期的年份
   var month = arr[1]; //获取当前日期的月份
@@ -112,25 +119,27 @@ export function getNextMonth(date) {
 /*
  *参数1：参数名 str
  * */
-export function GetQueryString(name) {
+let GetQueryString = function (name) {
   var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
   var r = window.location.search.substr(1).match(reg);
-  if (r != null)return unescape(r[2]);
+  if (r != null) return unescape(r[2]);
   return null;
 }
+
 //数组去重
 /*
  * 参数1：数组 arr
  * */
-export function removeRepet (arr) {
+let removeRepet = function (arr) {
   return Array.from(new Set(arr));
 }
+
 //数组对象去重
 /*
  * 参数1：数组对象，arrObj
  * 参数二：属性名  str
  * */
-export function arrayUnique(arrObj, name){
+let arrayUnique = function (arrObj, name) {
   var hash = {};
   return arrObj.reduce(function (item, next) {
     hash[next[name]] ? '' : hash[next[name]] = true && item.push(next);
@@ -144,7 +153,7 @@ export function arrayUnique(arrObj, name){
  * 参数2：属性  str
  * 参数3：值    str
  * */
-export function findElem(arrObj, attr, val) {
+let findElem = function (arrObj, attr, val) {
   for (var i = 0; i < arrObj.length; i++) {
     if (arrObj[i][attr] == val) {
       return i;
@@ -152,35 +161,52 @@ export function findElem(arrObj, attr, val) {
   }
   return -1;
 }
+
 //根据区间，获取随机整数
 /*
  * 参数1：最小值
  * 参数2：最大值
  * 返回值：整数
  * */
-export function randomNum(n, m){
-  var random = Math.floor(Math.random()*(m-n+1)+n);
+let randomNum = function (n, m) {
+  var random = Math.floor(Math.random() * (m - n + 1) + n);
   return random;
 }
+
 //标准简单sort排序 arrayObject.sort(sortby)  sortby必须是函数。
 /*
  * 参数1：数组/数组对象 arrObj
  * */
-export function simpleSort(arrObj){
+let simpleSort = function (arrObj) {
 
-  return arrObj.sort((a,b)=>{
-    return a-b
+  return arrObj.sort((a, b) => {
+    return a - b
   });
 }
+
 //传数组返回逗号隔开字符串
 /*
  * 参数1：数组 arr
  * 返回值：str
  * */
-export function getArrBarterStr (arr) {
-  let str='';
-  for (let v of arr){
-    str+=v+','
+let getArrBarterStr = function (arr) {
+  let str = '';
+  for (let v of arr) {
+    str += v + ','
   }
-  return str.substring(0,str.length-1)
+  return str.substring(0, str.length - 1)
+}
+
+export default {
+  timestampTime,
+  getCurrentMonth,
+  getLastMonth,
+  getNextMonth,
+  GetQueryString,
+  removeRepet,
+  arrayUnique,
+  findElem,
+  randomNum,
+  simpleSort,
+  getArrBarterStr
 }
