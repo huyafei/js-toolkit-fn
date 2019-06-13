@@ -161,7 +161,19 @@ let findElem = function (arrObj, attr, val) {
   }
   return -1;
 }
-
+//数组对象 返回指定属性值集合逗号隔开
+/*
+ * 参数1：数组对象 arrObj
+ * 参数2：属性  str
+ *
+ * */
+function getIds(arrObj, attr) {
+  let arr = [];
+  for (let v of arrObj){
+    arr.push(v[attr])
+  }
+  return arr.join(",");
+}
 //根据区间，获取随机整数
 /*
  * 参数1：最小值
