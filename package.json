@@ -1,8 +1,12 @@
 {
   "name": "js-toolkit-fn",
-  "version": "1.0.5",
-  "description": "js³£ÓÃ¹¤¾ßÀà",
-  "keyword": "js-tookit-fn",
+  "version": "1.0.6",
+  "description": "jså¸¸ç”¨å·¥å…·ç±»",
+  "keywords": [
+    "jså·¥å…·ç±»",
+    "jså¸¸ç”¨å‡½æ•°",
+    "js-toolkit-fn"
+  ],
   "main": "./src/utils/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
