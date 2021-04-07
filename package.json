@@ -8,12 +8,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/huyafei/js-tookit-fn.git"
+    "url": "git+https://github.com/huyafei/js-toolkit-fn.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/huyafei/js-tookit-fn/issues"
+    "url": "https://github.com/huyafei/js-toolkit-fn/issues"
   },
-  "homepage": "https://github.com/huyafei/js-tookit-fn#readme"
+  "homepage": "https://github.com/huyafei/js-toolkit-fn#readme"
 }
