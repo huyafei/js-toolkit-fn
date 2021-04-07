@@ -1,7 +1,7 @@
 {
   "name": "js-toolkit-fn",
   "version": "1.0.5",
-  "description": "jså¸¸ç”¨å·¥å…·ç±»",
+  "description": "js³£ÓÃ¹¤¾ßÀà",
   "keyword": "js-tookit-fn",
   "main": "./src/utils/index.js",
   "scripts": {
@@ -9,12 +9,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/huyafei/js-tookit-fn.git"
+    "url": "git+https://github.com/huyafei/js-toolkit-fn.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/huyafei/js-tookit-fn/issues"
+    "url": "https://github.com/huyafei/js-toolkit-fn/issues"
   },
-  "homepage": "https://github.com/huyafei/js-tookit-fn#readme"
+  "homepage": "https://github.com/huyafei/js-toolkit-fn#readme"
 }
