@@ -46,7 +46,9 @@ export const formatTime = function (time, cFormat) {
   const time_str = format.replace(/{([ymdhisa])+}/g, (result, key) => {
     const value = formatObj[key]
     // Note: getDay() returns 0 on Sunday
-    if (key === 'a') { return ['日', '一', '二', '三', '四', '五', '六'][value ] }
+    if (key === 'a') {
+      return ['日', '一', '二', '三', '四', '五', '六'][value]
+    }
     return value.toString().padStart(2, '0')
   })
   return time_str
@@ -175,7 +177,7 @@ export const formatHMS = function (s) {
 * @param {String} month 月份
 * @return {Number} 天数
 * */
-export const getMonthOfDay  = function (year, month) {
+export const getMonthOfDay = function (year, month) {
   let day;
   if (year && month) {
     day = new Date(year, month, 0);
@@ -190,7 +192,7 @@ export const getMonthOfDay  = function (year, month) {
 * @param  {Date/String} time 时间
 * @return {String}
 * */
-export const getFirstDayOfYear =function(time) {
+export const getFirstDayOfYear = function (time) {
   var year = new Date(time).getFullYear();
   return year + "-01-01 00:00:00";
 }
@@ -200,10 +202,10 @@ export const getFirstDayOfYear =function(time) {
 * @param  {Date/String} time 时间
 * @return {String}
 * */
-export const getLastDayOfYear=function (time) {
+export const getLastDayOfYear = function (time) {
   var year = new Date(time).getFullYear();
   var dateString = year + "-12-01 00:00:00";
-  var endDay = this.getMonthOfDay(year,12);
+  var endDay = this.getMonthOfDay(year, 12);
   return year + "-12-" + endDay + " 23:59:59";
 }
 
@@ -212,11 +214,11 @@ export const getLastDayOfYear=function (time) {
 * @param  {Date/String} time 时间
 * @return {String}
 * */
-export const getYearOfDay=function (time) {
+export const getYearOfDay = function (time) {
   var firstDayYear = this.getFirstDayOfYear(time);
   var lastDayYear = this.getLastDayOfYear(time);
-  var numSecond = (new Date(lastDayYear).getTime() - new Date(firstDayYear).getTime())/1000;
-  return Math.ceil(numSecond/(24*3600));
+  var numSecond = (new Date(lastDayYear).getTime() - new Date(firstDayYear).getTime()) / 1000;
+  return Math.ceil(numSecond / (24 * 3600));
 }
 
 /*
@@ -224,10 +226,10 @@ export const getYearOfDay=function (time) {
 * @param  {Date/String} time 时间
 * @return {String}
 * */
-export const getDayOfYear =function(time) {
+export const getDayOfYear = function (time) {
   var firstDayYear = this.getFirstDayOfYear(time);
-  var numSecond = (new Date(time).getTime() - new Date(firstDayYear).getTime())/1000;
-  return Math.ceil(numSecond/(24*3600));
+  var numSecond = (new Date(time).getTime() - new Date(firstDayYear).getTime()) / 1000;
+  return Math.ceil(numSecond / (24 * 3600));
 }
 
 /*
@@ -235,7 +237,7 @@ export const getDayOfYear =function(time) {
 * @param  {Date/String} time 时间
 * @return {String}
 * */
-export const getDayOfYearWeek =function(time) {
+export const getDayOfYearWeek = function (time) {
   var numdays = this.getDayOfYear(time);
   return Math.ceil(numdays / 7);
 }
@@ -348,3 +350,42 @@ export const getYearEndDate = function () {
   let currentYearLastDate = new Date(currentYear, 11, 31);
   return formatDate(currentYearLastDate);
 };
+
+function doHandleMonth(month) {
+  var m = month;
+  if (month.toString().length == 1) {
+    m = "0" + month;
+  }
+  return m;
+}
+
+/**
+ * @desc 获取近三天、近一周、近一个月，日期
+ * @param n
+ * @returns {string}
+ */
+export function getBeforeDate(len) {
+  var today = new Date();
+  var year = today.getFullYear();
+  var month = today.getMonth() + 1; //0-11表示1-12月
+  var day = today.getDate();
+  var monthTotalDay = new Date(year, month, 0).getDate();
+  let d;
+  if (day === monthTotalDay) {
+    return year + "-" + month + "-01";
+  }
+  if (len === 30) {
+    d = -(monthTotalDay - 1);
+  } else {
+    d = -(len - 1);
+  }
+
+  var targetday_milliseconds = today.getTime() + 1000 * 60 * 60 * 24 * d;
+  today.setTime(targetday_milliseconds); //注意，这行是关键代码
+  var tYear = today.getFullYear();
+  var tMonth = today.getMonth();
+  var tDay = today.getDate();
+  tMonth = doHandleMonth(tMonth + 1);
+  tDay = doHandleMonth(tDay);
+  return tYear + "-" + tMonth + "-" + tDay;
+}
